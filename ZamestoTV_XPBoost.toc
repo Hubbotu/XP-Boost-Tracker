@@ -1,0 +1,13 @@
+## Interface: 120100
+## Title: XP Boost Tracker
+## Notes: A leveling assistant designed to help you reach level 90 as efficiently as possible.
+## Notes-ruRU: Помощник в прокачке, призванный помочь вам максимально эффективно достичь 90-го уровня
+## Author: ZamestoTV
+## IconTexture: Interface\AddOns\ZamestoTV_XPBoost\Icons\goblin
+## Version: 1.7.4
+## SavedVariablesPerCharacter: XPBoostDB
+
+## Category-enUS: Addons ZamestoTV
+## Category-ruRU: Аддоны ZamestoTV
+
+XPBoost2.lua
