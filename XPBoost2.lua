@@ -111,7 +111,11 @@ function StepEngine:CalculatePendingXP()
             end
 
             if (isTagged or isTracked) and self:IsQuestReady(info.questID) then
-                pendingXP = pendingXP + (GetQuestLogRewardXP(info.questID) or 0)
+                -- Безопасный вызов GetQuestLogRewardXP через pcall
+                local ok, xp = pcall(GetQuestLogRewardXP, info.questID)
+                if ok and xp then
+                    pendingXP = pendingXP + xp
+                end
             end
         end
     end
@@ -769,8 +773,11 @@ listener:SetScript("OnEvent", function(_, event, arg1)
         UI:Construct()
         CreateNativeMinimapButton()
     else
-        CheckAutoAdvance()
-        UI:Update()
+        -- Очищаем стек вызова с помощью C_Timer.After, чтобы избежать передачи taint
+        C_Timer.After(0, function()
+            CheckAutoAdvance()
+            UI:Update()
+        end)
     end
 end)
 
